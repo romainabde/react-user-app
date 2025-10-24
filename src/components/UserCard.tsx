@@ -19,6 +19,7 @@ function UserCard({user} : UserCardProps){
             <h2>{user.firstName} {user.lastName}</h2>
             <p>Email: {user.email}</p>
             <p>Role: {user.role}</p>
+            <p>Âge: {user.age}</p>
         </div>
     )
 }
