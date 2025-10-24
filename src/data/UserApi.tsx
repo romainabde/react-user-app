@@ -84,6 +84,9 @@ export async function getUserById(id: number){
     let user : User;
     try{
         const response = await fetch(`https://dummyjson.com/user/${id}`);
+        if(response.status === 404){
+            throw new Error("404 Not Found");
+        }
         const data = await response.json();
 
         user = new User(

@@ -5,6 +5,7 @@ import UserCard from "./UserCard";
 import SearchBar from "./SearchBar";
 import "./styles/UserList.css";
 import LoadingSpinner from "./LoadingSpinner";
+import ErrorPage from "./ErrorPage";
 
 function ListUsers(){
 
@@ -78,7 +79,13 @@ function ListUsers(){
 
     // Gérer les états de chargement et d'erreur
     if(loading){ return <LoadingSpinner/>; }
-    if(error){ return <p>{error}</p>; }
+    if(error){
+        if(error.includes("Failed to fetch")){
+            return <ErrorPage message="Impossible de se connecter au serveur."/>;
+        }else{
+            return <ErrorPage message={error} />;
+        }
+    }
 
     // Pagination des utilisateurs
     const indexOfLastUser = currentPage * usersPerPage;

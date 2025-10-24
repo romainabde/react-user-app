@@ -4,6 +4,8 @@ import { User } from "../model/User";
 import { getUserById } from "../data/UserApi";
 import "./styles/UserDetail.css";
 import LoadingSpinner from "./LoadingSpinner";
+import NotFound from "./NotFound";
+import ErrorPage from "./ErrorPage";
 
 function UserDetail() {
     const {id} = useParams();
@@ -31,7 +33,13 @@ function UserDetail() {
     }
 
     if(error){
-        return <p>{error}</p>;
+        if(error.includes("404")){
+            return <NotFound/>;
+        }else if(error.includes("Failed to fetch")){
+            return <ErrorPage message="Impossible de se connecter au serveur."/>;
+        }else{
+            return <ErrorPage message={error} />;
+        }
     }
 
     if (!user) {
