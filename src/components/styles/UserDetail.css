@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.user-detail{
+    background-color: gray;
+    padding: 20px;
+    border-radius: 10px;
+
+    width: 1000px;
+}
+
+p{
+    font-size: 14px;
+}
+
+    .user-header{
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        margin-bottom: 20px;
+    }
+        .user-header img{
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+    .user-detail .general-info {
+        background: #ffffff54;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        width: 100%;
+    }
+        .user-detail .general-info h2 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+        }
+
+        .user-detail .general-info p {
+            margin: 2px 0;
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        .user-detail .general-info .back-button {
+            margin-top: 8px;
+            padding: 8px 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #7a9fc6;
+            color: white;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .user-detail .general-info .back-button:hover {
+        background: #aac7e8;
+        }
+
+
+
+    .other-info{
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+        gap: 20px;
+    }
+        .other-info div{
+            width: 48%;
+            background-color: #e0e0e0;
+            padding: 15px;
+            border-radius: 8px;
+        }
+            .other-info div h2{
+                margin-bottom: 10px;
+                font-size: 1.2em;
+                color: #333;
+            }

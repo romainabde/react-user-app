@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { User } from "../model/User";
+import "./styles/UserCard.css";
 
 interface UserCardProps {
     user : User;

@@ -3,6 +3,7 @@ import { User } from "../model/User";
 import { getUsers } from "../data/UserApi";
 import UserCard from "./UserCard";
 import SearchBar from "./SearchBar";
+import "./styles/UserList.css";
 
 function ListUsers(){
 
@@ -69,8 +70,8 @@ function ListUsers(){
     const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
 
     return (
-        <div>
-            <h1>ListUsers</h1>
+        <div className="user-list">
+            <h1>Liste des utilisateurs</h1>
 
             <SearchBar search={search} setSearch={setSearch} sort={sort} setSort={setSort}/>
             
@@ -82,7 +83,7 @@ function ListUsers(){
                 }
             </div>
 
-            <div>
+            <div className="pagination">
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
                     <button key={page}
                             onClick={() => setCurrentPage(page)}
