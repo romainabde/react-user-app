@@ -1,8 +1,7 @@
-export class Crypto {
+export class CryptoModel {
     coin: string;
     wallet: string;
     network: string;
-
 
     constructor(coin: string, wallet: string, network: string) {
         this.coin = coin;

@@ -1,6 +1,7 @@
 import { Address } from "./Adress"
 import { Bank } from "./Bank"
 import { Company } from "./Company"
+import { CryptoModel } from "./CryptoModel";
 import { Hair } from "./Hair"
 
 export class User {
@@ -30,7 +31,7 @@ export class User {
     ein: string;
     ssn: string;
     userAgent: string;
-    crypto: Crypto;
+    crypto: CryptoModel;
     role: string;
     
 
@@ -61,7 +62,7 @@ export class User {
         ein: string,
         ssn: string,
         userAgent: string,
-        crypto: Crypto,
+        crypto: CryptoModel,
         role: string
     ) {
         this.id = id;
