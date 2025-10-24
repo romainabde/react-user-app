@@ -7,14 +7,15 @@ function ListUsers(){
 
     const [users, setUsers] = useState<Array<User>>([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         getUsers()
             .then(data => {
                 setUsers(data);
             })
-            .catch(() => {
-                setUsers([]);
+            .catch(err => {
+                setError("Erreur lors de la récupération des utilisateurs : " +err.message);
             })
             .finally(() => {
                 setLoading(false);
@@ -25,8 +26,8 @@ function ListUsers(){
         return <p>Chargement...</p>;
     }
 
-    if(!users || users.length === 0){
-        return <p>Impossible de récupérer les utilisateurs</p>;
+    if(error){
+        return <p>{error}</p>;
     }
 
     return (

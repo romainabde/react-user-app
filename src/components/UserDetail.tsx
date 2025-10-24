@@ -7,6 +7,7 @@ function UserDetail() {
     const {id} = useParams();
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         if (id) {
@@ -14,8 +15,8 @@ function UserDetail() {
             .then(data => {
                 setUser(data);
             })
-            .catch(() => {
-                setUser(null);
+            .catch(err => {
+                setError("Utilisateur non trouvé : " +err.message);
             })
             .finally(() => {
                 setLoading(false);
@@ -27,8 +28,12 @@ function UserDetail() {
         return <p>Chargement...</p>;
     }
 
-    if(!user){
-        return <p>404 : Utilisateur non trouvé</p>;
+    if(error){
+        return <p>{error}</p>;
+    }
+
+    if (!user) {
+        return <p>Impossible de récupérer les informations de l'utilisateur.</p>;
     }
 
     return (
