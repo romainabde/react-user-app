@@ -6,14 +6,22 @@ import SearchBar from "./SearchBar";
 
 function ListUsers(){
 
+    // Données des utilisateurs
     const [users, setUsers] = useState<Array<User>>([]);
 
+    // Recherche et tri
     const [search, setSearch] = useState("");
     const [sort, setSort] = useState<"name" | "age">("name");
+    
+    // Pagination
+    const [currentPage, setCurrentPage] = useState(1);
+    const usersPerPage = 10;
 
+    // Gestion du chargement et des erreurs
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    // Récupérer les utilisateurs au chargement du composant
     useEffect(() => {
         getUsers()
             .then(data => {
@@ -27,6 +35,12 @@ function ListUsers(){
             });
     }, []);
 
+    // Réinitialiser la page courante lors d'une nouvelle recherche
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [search]);
+
+    // Filtrer et trier les utilisateurs
     const filteredUsers = useMemo(() => {
         let filtered = users.filter(user =>
             user.firstName.toLowerCase().includes(search.toLowerCase()) ||
@@ -43,8 +57,16 @@ function ListUsers(){
         return filtered;
     }, [users, search, sort]);
 
+    // Gérer les états de chargement et d'erreur
     if(loading){ return <p>Chargement...</p>; }
     if(error){ return <p>{error}</p>; }
+
+    // Pagination des utilisateurs
+    const indexOfLastUser = currentPage * usersPerPage;
+    const indexOfFirstUser = indexOfLastUser - usersPerPage;
+    const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+
+    const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
 
     return (
         <div>
@@ -54,10 +76,20 @@ function ListUsers(){
             
             <div className="users">
                 {
-                    filteredUsers.map(user => (
+                    currentUsers.map(user => (
                         <UserCard key={user.id} user={user} />
                     ))
                 }
+            </div>
+
+            <div>
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                    <button key={page}
+                            onClick={() => setCurrentPage(page)}
+                            disabled={page === currentPage} >
+                        {page}
+                    </button>
+                ))}
             </div>
         </div>
     );
