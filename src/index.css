@@ -1,0 +1,40 @@
+body[data-theme="light"] {
+    --bg-color: #fff;
+    --text-color: #333;
+    --card-bg: #f8f8f8;
+}
+
+body[data-theme="dark"] {
+    --bg-color: #1e1e1e;
+    --text-color: #f0f0f0;
+    --card-bg: #2a2a2a;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-color);
+}
+
+div{
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.article-card, .article-card div {
+    background-color: var(--card-bg);
+    
+}
+
+p{
+    color: var(--text-color);
+}

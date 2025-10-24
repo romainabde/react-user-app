@@ -6,6 +6,7 @@ import SearchBar from "./SearchBar";
 import "./styles/UserList.css";
 import LoadingSpinner from "./LoadingSpinner";
 import ErrorPage from "./ErrorPage";
+import ChangeTheme from "./ChangeTheme";
 
 function ListUsers(){
 
@@ -96,6 +97,7 @@ function ListUsers(){
 
     return (
         <div className="user-list">
+            <ChangeTheme />
             <h1>Liste des utilisateurs</h1>
 
             <SearchBar

@@ -4,15 +4,6 @@
     box-sizing: border-box;
 }
 
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
-}
-
 .user-detail{
     background-color: gray;
     padding: 20px;
@@ -55,7 +46,6 @@ p{
         .user-detail .general-info p {
             margin: 2px 0;
             font-size: 0.95rem;
-            color: #333;
         }
 
         .user-detail .general-info .back-button {
@@ -65,7 +55,6 @@ p{
             border-radius: 5px;
             cursor: pointer;
             background: #7a9fc6;
-            color: white;
             font-size: 0.9rem;
             transition: 0.2s;
         }
@@ -84,12 +73,10 @@ p{
     }
         .other-info div{
             width: 48%;
-            background-color: #e0e0e0;
             padding: 15px;
             border-radius: 8px;
         }
             .other-info div h2{
                 margin-bottom: 10px;
                 font-size: 1.2em;
-                color: #333;
             }
