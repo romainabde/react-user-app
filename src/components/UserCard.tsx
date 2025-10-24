@@ -4,9 +4,11 @@ import "./styles/UserCard.css";
 
 interface UserCardProps {
     user : User;
+    isFavorite: boolean;
+    toggleFavorite: (userId: number) => void;
 }
 
-function UserCard({user} : UserCardProps){
+function UserCard({ user, isFavorite, toggleFavorite }: UserCardProps) {
 
     const navigate = useNavigate();
 
@@ -15,12 +17,19 @@ function UserCard({user} : UserCardProps){
     }
 
     return (
-        <div className="article-card" onClick={handleClick}>
-            <img src={user.image} alt={user.username} width="200" />
-            <h2>{user.firstName} {user.lastName}</h2>
-            <p>Email: {user.email}</p>
-            <p>Role: {user.role}</p>
-            <p>Âge: {user.age}</p>
+        <div className="article-card">
+            <div onClick={handleClick}>
+                <div className="img-div">
+                    <img src={user.image} alt={user.username} width="200" />
+                </div>
+                <h2>{user.firstName} {user.lastName}</h2>
+                <p>Email: {user.email}</p>
+                <p>Role: {user.role}</p>
+                <p>Âge: {user.age}</p>
+            </div>
+            <div className="favorite-star" onClick={() => toggleFavorite(user.id)}>
+                {isFavorite ? "★" : "☆"}
+            </div>
         </div>
     )
 }

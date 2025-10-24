@@ -22,6 +22,19 @@ function ListUsers(){
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
+    // Gérer les favoris
+    const [favorites, setFavorites] = useState<number[]>(() => {
+        const saved = localStorage.getItem("favorites");
+        return saved ? JSON.parse(saved) : [];
+    });
+    const [showFavorites, setShowFavorites] = useState(false);
+
+    const toggleFavorite = (userId: number) => {
+        setFavorites(prev =>
+            prev.includes(userId) ? prev.filter(id => id !== userId) : [...prev, userId]
+        );
+    };
+
     // Récupérer les utilisateurs au chargement du composant
     useEffect(() => {
         getUsers()
@@ -49,6 +62,10 @@ function ListUsers(){
             user.email.toLowerCase().includes(search.toLowerCase())
         );
 
+        if (showFavorites) {
+            filtered = filtered.filter(user => favorites.includes(user.id));
+        }
+
         if (sort === "name") {
             filtered.sort((a, b) => a.firstName.localeCompare(b.firstName));
         } else if (sort === "age") {
@@ -56,7 +73,7 @@ function ListUsers(){
         }
 
         return filtered;
-    }, [users, search, sort]);
+    }, [users, search, sort, showFavorites, favorites]);
 
     // Gérer les états de chargement et d'erreur
     if(loading){ return <p>Chargement...</p>; }
@@ -73,12 +90,21 @@ function ListUsers(){
         <div className="user-list">
             <h1>Liste des utilisateurs</h1>
 
-            <SearchBar search={search} setSearch={setSearch} sort={sort} setSort={setSort}/>
+            <SearchBar
+                search={search}
+                setSearch={setSearch}
+                sort={sort}
+                setSort={setSort}
+                showFavorites={showFavorites}
+                setShowFavorites={setShowFavorites} // <-- ici c'était faux avant
+            />
             
             <div className="users">
                 {
                     currentUsers.map(user => (
-                        <UserCard key={user.id} user={user} />
+                        <UserCard   key={user.id} user={user}
+                                    isFavorite={favorites.includes(user.id)}
+                                    toggleFavorite={toggleFavorite}/>
                     ))
                 }
             </div>
