@@ -4,6 +4,7 @@ import { getUsers } from "../data/UserApi";
 import UserCard from "./UserCard";
 import SearchBar from "./SearchBar";
 import "./styles/UserList.css";
+import LoadingSpinner from "./LoadingSpinner";
 
 function ListUsers(){
 
@@ -76,7 +77,7 @@ function ListUsers(){
     }, [users, search, sort, showFavorites, favorites]);
 
     // Gérer les états de chargement et d'erreur
-    if(loading){ return <p>Chargement...</p>; }
+    if(loading){ return <LoadingSpinner/>; }
     if(error){ return <p>{error}</p>; }
 
     // Pagination des utilisateurs

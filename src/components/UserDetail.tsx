@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { User } from "../model/User";
 import { getUserById } from "../data/UserApi";
 import "./styles/UserDetail.css";
+import LoadingSpinner from "./LoadingSpinner";
 
 function UserDetail() {
     const {id} = useParams();
@@ -26,7 +27,7 @@ function UserDetail() {
     }, [id]);
 
     if(loading){
-        return <p>Chargement...</p>;
+        return <LoadingSpinner/>;
     }
 
     if(error){
